@@ -153,66 +153,6 @@ const collapsePanels = () => {
 
 
 }
-// const collapsePanels = () => {
-//     isInitial.value = false
-//     const grid = document.getElementById('main-container')
-//     const panels = document.querySelectorAll('.panel')
-
-//     panels.forEach((panel) => {
-//         panel.classList.remove('initial')
-//         if (panel.getAttribute('data-name') !== activeTab.value) panel.classList.add('collapsed')
-//         else panel.classList.remove('collapsed')
-//     })
-
-//     console.log(activeTab.value)
-
-//     switch(activeTab.value) {
-//         case 'about_us':
-//             grid.style.gridTemplateColumns = '1fr 4rem 4rem 4rem 4rem 4rem 4rem'
-//             break
-//         case 'natural_stone':
-//             grid.style.gridTemplateColumns = '4rem 1fr 4rem 4rem 4rem 4rem 4rem'
-//             break
-//         case 'stenhuggardottern':
-//             grid.style.gridTemplateColumns = '4rem 4rem 1fr 4rem 4rem 4rem 4rem'
-//             break
-//         case 'new_line':
-//             grid.style.gridTemplateColumns = '4rem 4rem 4rem 1fr 4rem 4rem 4rem'
-//             break
-//         case 'sabi_garden':
-//             grid.style.gridTemplateColumns = '4rem 4rem 4rem 4rem 1fr 4rem 4rem'
-//             break
-//         case 'supreme_beds':
-//             grid.style.gridTemplateColumns = '4rem 4rem 4rem 4rem 4rem 1fr 4rem'
-//             break
-//         case 'det_vilda_skafferiet':
-//             grid.style.gridTemplateColumns = '4rem 4rem 4rem 4rem 4rem 4rem 1fr'
-//             break
-//             default:
-//                 grid.style.gridTemplateColumns = 'repeat(7, 1fr)'
-//     }
-
-// }
-// const collapsePanels = () => {
-//   console.log('collapsePanels', click.value)
-//   const panels = document.querySelectorAll('.panel')
-
-//   if (isInitial.value) {
-//     console.log('Bonjour')
-//     isInitial.value = false
-
-//     panels.forEach((panel) => {
-//       panel.classList.remove('initial')
-//       // if (panel.getAttribute('data-name') !== activeTab.value) panel.classList.add('collapsed')
-//       // else panel.classList.remove('collapsed')
-//     })
-//   }
-//     panels.forEach((panel) => {
-//     panel.classList.remove('initial')
-//     if (panel.getAttribute('data-name') !== activeTab.value) panel.classList.add('collapsed')
-//     else panel.classList.remove('collapsed')
-//   })
-// }
 
 const onBeforeEnter = (el) => {
     console.log('onBeforeEnter')
@@ -426,7 +366,7 @@ const onLeaveCancelled = (el) => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_s.jpg" alt="" />
+            <img src="/assets/categories/kategoribild_nl.jpg" alt="" />
           </div>
         </div>
       </section>
