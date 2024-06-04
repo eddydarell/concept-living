@@ -289,7 +289,7 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="#">See all NATURAL STONE</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Natural%20Stone.pdf" target="_blank" download>See all NATURAL STONE</a>
             </div>
           </div>
           <div class="cover">
@@ -325,7 +325,7 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="#">See all STENHUGGARDOTTERN</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Stenhuggardottern.pdf" target="_blank" download>See all STENHUGGARDOTTERN</a>
             </div>
           </div>
           <div class="cover">
@@ -362,7 +362,7 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="#">See all of NEW LINE</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Wood.pdf" target="_blank" download>See all of NEW LINE</a>
             </div>
           </div>
           <div class="cover">
@@ -398,7 +398,7 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="#">See all of SABI GARDEN</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Sabi%20Garden.pdf" target="_blank" download>See all of SABI GARDEN</a>
             </div>
           </div>
           <div class="cover">
@@ -433,7 +433,7 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="#">See all of SUPREME BEDS</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Beds.pdf" target="_blank" download>See all of SUPREME BEDS</a>
             </div>
           </div>
           <div class="cover">
@@ -470,7 +470,7 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="#">See all of DET VILDA SKAFFERIET</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Det%20Vilda%20Skafferiet.pdf" target="_blank" download>See all of DET VILDA SKAFFERIET</a>
             </div>
           </div>
           <div class="cover">
