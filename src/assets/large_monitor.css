@@ -263,6 +263,10 @@ section.panel:nth-child(7) {
   z-index: 7;
 }
 
+section.panel:nth-child(8) {
+  z-index: 8;
+}
+
 section.panel.collapsed {
   max-width: 4rem;
 }
@@ -285,7 +289,7 @@ img.home-logo {
   top: 4rem;
   right: 4rem;
   transform: rotate(90deg);
-  height: calc(100vw / 7 - 8rem);
+  height: calc(100vw / 8 - 8rem);
   width: auto;
   object-fit: cover;
   z-index: 1;
@@ -339,8 +343,8 @@ img.home-logo {
 
 .initial .panel-title {
   align-items: center;
-  transform: translateX(calc(-50% + calc(100vw / 14))) rotate(-90deg);
-  height: calc(100vw / 7 + 3px);
+  transform: translateX(calc(-50% + calc(100vw / 16))) rotate(-90deg);
+  height: calc(100vw / 7);
   opacity: 1;
   background-color: #665252;
 }
@@ -417,7 +421,7 @@ img.home-logo {
 
 .content-wrapper .logo {
   margin-bottom: 2rem;
-  width: calc(100vw / 7 - 6rem);
+  width: calc(100vw / 8 - 6rem);
   height: auto;
 }
 

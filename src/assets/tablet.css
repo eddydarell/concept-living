@@ -263,6 +263,10 @@ section.panel:nth-child(7) {
   z-index: 7;
 }
 
+section.panel:nth-child(8) {
+  z-index: 8;
+}
+
 section.panel.collapsed {
   max-width: 3rem;
 }
@@ -289,7 +293,7 @@ img.home-logo {
   top: 1.5rem;
   right: 1.5rem;
   transform: rotate(90deg);
-  height: calc(100vw / 7 - 3rem);
+  height: calc(100vw / 8 - 3rem);
   width: auto;
   object-fit: cover;
   z-index: 1;
@@ -343,8 +347,8 @@ img.home-logo {
 
 .initial .panel-title {
   align-items: center;
-  transform: translateX(calc(-50% + calc(100vw / 14))) rotate(-90deg);
-  height: calc(100vw / 7 + 3px);
+  transform: translateX(calc(-50% + calc(100vw / 16))) rotate(-90deg);
+  height: calc(100vw / 7);
   opacity: 1;
   background-color: #665252;
 }

@@ -261,6 +261,10 @@ section.panel:nth-child(7) {
   z-index: 7;
 }
 
+section.panel:nth-child(8) {
+  z-index: 8;
+}
+
 section.panel.collapsed {
   display: none;
   max-height: 0rem;
@@ -292,7 +296,7 @@ img.home-logo {
   scale: 0.5;
   top: 1rem;
   left: 1rem;
-  height: calc(100vh / 7 - 2rem);
+  height: calc(100vh / 8 - 2rem);
   width: auto;
   object-fit: cover;
   z-index: 1;
@@ -317,8 +321,8 @@ img.home-logo {
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
   top: 1rem;
   left: 1rem;
-  height: calc(100vh / 7 - 2rem);
-  width: calc(100vh / 7 - 2rem);
+  height: calc(100vh / 8 - 2rem);
+  width: calc(100vh / 8 - 2rem);
   z-index: 100;
   background: #665252;
   transition:
@@ -350,19 +354,17 @@ img.home-logo {
 
 .panel-title img.cover {
   position: absolute;
-  /* transform: translateX(calc(37.5vh)) rotate(90deg); */
-  height: calc(100vh / 7 + 3px);
+  height: calc(100vh / 8 + 3px);
   width: 100%;
   object-fit: cover;
   z-index: -1;
   transition: ease filter 0.4s;
-  filter: grayscale(50%);
 }
 
 .initial .panel-title {
   display: flex;
   align-items: center;
-  height: calc(100vh / 7);
+  height: calc(100vh / 8);
   opacity: 1;
   background-color: #665252;
 }
@@ -440,8 +442,8 @@ img.home-logo {
 
 .content-wrapper .logo {
   margin-bottom: 2rem;
-  width: calc(100vh / 7 - 2rem);
-  height: calc(100vh / 7 - 2rem);
+  width: calc(100vh / 8 - 2rem);
+  height: calc(100vh / 8 - 2rem);
 }
 
 .content-wrapper section {

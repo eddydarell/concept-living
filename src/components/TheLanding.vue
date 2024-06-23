@@ -230,11 +230,13 @@ const collapsePanels = () => {
 
 watch(activeBreakpoint, () => {
   console.log('active breakpoint:', activeBreakpoint.value)
-  collapsePanels()
 
   if (isMobile.value) {
     window.location.reload()
+    return
   }
+
+  collapsePanels()
 })
 
 onMounted(() => {
@@ -247,7 +249,6 @@ onMounted(() => {
     document.querySelector('.menu-button')?.classList.add('initial')
 
     isInitial.value = true
-    console.log('clicked')
   })
 })
 </script>
@@ -549,6 +550,44 @@ onMounted(() => {
           </div>
           <div class="cover">
             <img src="/assets/categories/kategoribild_dvs.jpg" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section class="panel initial" data-name="contact" key="contact">
+        <div class="panel-title" data-tab="contact" @click="activateTab">
+          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_cl.jpg" alt="" />
+          <h1 class="header">Contact</h1>
+          <div class="dampener">&nbsp;</div>
+        </div>
+        <div class="content-wrapper">
+          <div class="content">
+            <div class="logo">
+              <img src="/assets/logos/concept_living_logo.svg" alt="" />
+            </div>
+            <section>
+              <h2 class="header large">Contact</h2>
+              <p>Concept Living Nordic AB Plantagegatan 6 41305 Göteborg</p>
+            </section>
+            <section>
+              <p>
+                General info@conceptliving.se <br />
+                +46737231335 <br />
+                Finance finance@conceptliving.se <br />
+                Claims claim@conceptliving.se
+              </p>
+            </section>
+            <div class="links">
+              <a
+                href="https://www.conceptliving.se/cat/CL%20-%20Det%20Vilda%20Skafferiet.pdf"
+                target="_blank"
+                download
+                >See all of DET VILDA SKAFFERIET</a
+              >
+            </div>
+          </div>
+          <div class="cover">
+            <img src="/assets/categories/kategoribild_cl.jpg" alt="" />
           </div>
         </div>
       </section>
