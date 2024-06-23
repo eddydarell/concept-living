@@ -1,5 +1,19 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { usePreferredDark } from '@vueuse/core'
+import { watch } from 'vue'
+
+const isDark = usePreferredDark()
+const lightIcon = '/assets/logos/concept_living_logo.svg'
+const darkIcon = '/assets/logos/concept_living_logo_white.svg'
+
+watch(isDark, (newVal) => {
+  const link = document.querySelector("link[rel*='icon']") || document.createElement('link')
+  link.type = 'image/svg+xml'
+  link.rel = 'icon'
+  link.href = newVal ? darkIcon : lightIcon
+  document.getElementsByTagName('head')[0].appendChild(link)
+})
 </script>
 
 <template>

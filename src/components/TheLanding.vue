@@ -1,212 +1,263 @@
-<script setup>
+<script setup lang="ts">
 import anime from 'animejs'
-import { useLocalStorage } from '@vueuse/core'
-import { ref } from 'vue'
+import { useLocalStorage, useWindowSize, useBreakpoints } from '@vueuse/core'
+import { ref, computed, onMounted, watch } from 'vue'
 
 const activeTab = ref('about_us')
 const isInitial = ref(true)
 const click = ref(0)
 const showCookieBanner = useLocalStorage('showCookieBanner', true)
+const homeBtn = ref(null)
+
+const { width, height } = useWindowSize()
+const breakpoints = useBreakpoints({
+  mobile: 0, // optional
+  tablet: 768,
+  laptop: 1024,
+  desktop: 1280,
+  wide: 2560
+})
+
+const animationKeyframes = computed(() => {
+  switch (activeBreakpoint.value) {
+    case 'mobile':
+      return [
+        { maxWidth: '4rem', duration: 300 },
+        { maxWidth: '4rem', duration: 300 }
+      ]
+    case 'tablet':
+      return [
+        { maxWidth: '1.5rem', duration: 300 },
+        { maxWidth: '1.5rem', duration: 300 }
+      ]
+    case 'laptop':
+      return [
+        { maxWidth: '2rem', duration: 300 },
+        { maxWidth: '2rem', duration: 300 }
+      ]
+    case 'desktop':
+      return [
+        { maxWidth: '3rem', duration: 300 },
+        { maxWidth: '3rem', duration: 300 }
+      ]
+    case 'wide':
+      return [
+        { maxWidth: '4rem', duration: 300 },
+        { maxWidth: '4rem', duration: 300 }
+      ]
+    default:
+      return [
+        { maxWidth: '4rem', duration: 300 },
+        { maxWidth: '4rem', duration: 300 }
+      ]
+  }
+})
+
+const panelHeaderKeyframes = computed(() => {
+  switch (activeBreakpoint.value) {
+    case 'mobile':
+      return [
+        { justifyContent: 'flex-end' },
+        { alignItems: 'center' },
+        { width: '100%' },
+        { marginBottom: ['4.5rem', '0rem'] },
+        { fontSize: ['3rem', '1.2rem'] }
+      ]
+    case 'tablet':
+      return [
+        { justifyContent: 'flex-end' },
+        { alignItems: 'center' },
+        { width: '100%' },
+        { marginBottom: ['4.5rem', '0rem'] },
+        { fontSize: ['3rem', '1rem'] }
+      ]
+    case 'laptop':
+      return [
+        { justifyContent: 'flex-end' },
+        { alignItems: 'center' },
+        { width: '65%' },
+        { marginBottom: ['4.5rem', '0.2rem'] },
+        { fontSize: ['2rem', '1.2rem'] }
+      ]
+    case 'desktop':
+      return [
+        { justifyContent: 'flex-end' },
+        { alignItems: 'center' },
+        { width: '65%' },
+        { marginBottom: ['4.5rem', '0.3rem'] },
+        { fontSize: ['3rem', '1.5rem'] }
+      ]
+    case 'wide':
+      return [
+        { justifyContent: 'flex-end' },
+        { alignItems: 'center' },
+        { width: '65%' },
+        { marginBottom: ['4.5rem', '0.5rem'] },
+        { fontSize: ['3rem', '3rem'] }
+      ]
+    default:
+      return [
+        { justifyContent: 'flex-end' },
+        { alignItems: 'center' },
+        { width: '65%' },
+        { marginBottom: ['4.5rem', '0rem'] },
+        { fontSize: ['3rem', '2rem'] }
+      ]
+  }
+})
+
+const activeBreakpoint = breakpoints.active()
+const isMobile = computed(() => activeBreakpoint.value === 'mobile')
 
 const activateTab = (event) => {
-    
   activeTab.value =
     event.target.getAttribute('data-tab') || event.target.parentElement.getAttribute('data-tab')
   collapsePanels()
 }
 
 const collapsePanels = () => {
-    if (isInitial.value) {
-
-        anime({
-            targets: '.panel-title',
-            keyframes: [
-                { justifyContent: 'flex-end' },
-            ],
-            duration: 500,
-            easing: 'linear',
-            complete: () => {
-                    // document.querySelectorAll('.panel').forEach((el) => {
-                    //     el.classList.remove('initial')
-                    //     if (el.getAttribute('data-name') !== activeTab.value) el.classList.add('collapsed')
-                    //     else el.classList.remove('collapsed')
-                    // })
-                
-            }
-        })
-
-        anime({
-        targets: `.panel[data-name="${ activeTab.value}"]`,
-        keyframes: [
-            { maxWidth: '100%', duration: 300 },
-            { maxWidth: '100%', duration: 300 }
-        ],
-        easing: 'linear'
+  if (isInitial.value) {
+    anime({
+      targets: '.panel-title',
+      keyframes: [{ justifyContent: 'flex-end' }],
+      duration: 500,
+      easing: 'linear'
     })
 
     anime({
-        targets: `.panel:not([data-name="${ activeTab.value}"])`,
-        keyframes: [
-            { maxWidth: '4rem', duration: 300 },
-            { maxWidth: '4rem', duration: 300 }
-        ],
-        easing: 'linear',
-        complete: () => {
-            setTimeout(() => {
-               document.querySelectorAll('.panel').forEach((el) => {
-                el.classList.remove('initial')
-                if (el.getAttribute('data-name') !== activeTab.value) el.classList.add('collapsed')
-                else el.classList.remove('collapsed')
-            })
-            }, 100)
-            
-        }
-    })
-
-        anime({
-            targets: '.panel-title h1',
-            keyframes: [
-                { justifyContent: 'flex-end' },
-                { alignItems: 'center' },
-                { width: '65%' },
-                { marginBottom: ['4.5rem', '0rem'] },
-                { fontSize: ['3rem', '2rem'] },
-            ],
-            duration: 800,
-            easing: 'linear',
-            complete: () => {
-            }
-        })
-
-        anime({
-        targets: '.panel-title img.cover',
-        keyframes: [
-            { opacity: 1, duration: 800 },
-            { opacity: 0, duration: 800 }
-        ],
-            easing: 'linear',
-            complete: () => {
-                isInitial.value = false
-            }
-        })
-
-        return
-    }
-
-    anime({
-        targets: `.panel[data-name="${ activeTab.value}"]`,
-        keyframes: [
-            { maxWidth: '100%', duration: 300 },
-            { maxWidth: '100%', duration: 300 }
-        ],
-        easing: 'linear'
+      targets: `.panel[data-name="${activeTab.value}"]`,
+      keyframes: [
+        { maxWidth: '100%', duration: 300 },
+        { maxWidth: '100%', duration: 300 }
+      ],
+      easing: 'linear'
     })
 
     anime({
-        targets: `.panel:not([data-name="${ activeTab.value}"])`,
-        keyframes: [
-            { maxWidth: '4rem', duration: 300 },
-            { maxWidth: '4rem', duration: 300 }
-        ],
-        easing: 'linear'
+      targets: `.panel:not([data-name="${activeTab.value}"])`,
+      keyframes: animationKeyframes.value,
+      easing: 'linear',
+      complete: () => {
+        setTimeout(() => {
+          document.querySelectorAll('.panel').forEach((el) => {
+            el.classList.remove('initial')
+            if (el.getAttribute('data-name') !== activeTab.value) el.classList.add('collapsed')
+            else el.classList.remove('collapsed')
+          })
+
+          document.querySelector('.menu-button')?.classList.remove('initial')
+        }, 100)
+      }
     })
 
     anime({
-        targets: `.panel[data-name="${ activeTab.value}"] .panel-title`,
-        keyframes: [
-            { opacity: 0, duration: 300 },
-            { opacity: 0, duration: 300 }
-        ],
-        duration: 500,
-        easing: 'linear'
+      targets: '.panel-title h1',
+      keyframes: panelHeaderKeyframes.value,
+      duration: 800,
+      easing: 'linear',
+      complete: () => {}
     })
 
     anime({
-        targets: `.panel:not([data-name="${ activeTab.value}"]) .panel-title`,
-        keyframes: [
-            { opacity: 1, duration: 300 },
-            { opacity: 1, duration: 300 }
-        ],
-        duration: 500,
-        easing: 'linear'
+      targets: '.panel-title img.cover',
+      keyframes: [
+        { opacity: 1, duration: 600 },
+        { opacity: 0, duration: 600 }
+      ],
+      easing: 'linear',
+      complete: () => {
+        isInitial.value = false
+      }
     })
 
-    anime({
-        targets: `.panel[data-name="${ activeTab.value}"] .content-wrapper .content`,
-        keyframes: [
-            { opacity: 1, duration: 300 },
-            { opacity: 1, duration: 300 }
-        ],
-        duration: 500,
-        easing: 'linear'
+    return
+  }
+
+  anime({
+    targets: `.panel[data-name="${activeTab.value}"]`,
+    keyframes: [
+      { maxWidth: '100%', duration: 300 },
+      { maxWidth: '100%', duration: 300 }
+    ],
+    easing: 'linear'
+  })
+
+  anime({
+    targets: `.panel:not([data-name="${activeTab.value}"])`,
+    keyframes: animationKeyframes.value,
+    easing: 'linear'
+  })
+
+  anime({
+    targets: `.panel[data-name="${activeTab.value}"] .panel-title`,
+    keyframes: [
+      { opacity: 0, duration: 300 },
+      { opacity: 0, duration: 300 }
+    ],
+    duration: 500,
+    easing: 'linear'
+  })
+
+  anime({
+    targets: `.panel:not([data-name="${activeTab.value}"]) .panel-title`,
+    keyframes: [
+      { opacity: 1, duration: 300 },
+      { opacity: 1, duration: 300 }
+    ],
+    duration: 500,
+    easing: 'linear'
+  })
+
+  anime({
+    targets: `.panel[data-name="${activeTab.value}"] .content-wrapper .content`,
+    keyframes: [
+      { opacity: 1, duration: 300 },
+      { opacity: 1, duration: 300 }
+    ],
+    duration: 500,
+    easing: 'linear'
+  })
+
+  anime({
+    targets: `.panel:not([data-name="${activeTab.value}"]) .content-wrapper .content`,
+    keyframes: [
+      { opacity: 0, duration: 300 },
+      { opacity: 0, duration: 300 }
+    ],
+    duration: 500,
+    easing: 'linear'
+  })
+}
+
+watch(activeBreakpoint, () => {
+  console.log('active breakpoint:', activeBreakpoint.value)
+  collapsePanels()
+
+  if (isMobile.value) {
+    document.querySelector('.menu-button')?.classList.remove('initial')
+  }
+})
+
+onMounted(() => {
+  homeBtn.value?.addEventListener('click', () => {
+    document.querySelectorAll('.panel').forEach((el) => {
+      el.classList.add('initial')
+      el.classList.remove('collapsed')
     })
 
-    anime({
-        targets: `.panel:not([data-name="${ activeTab.value}"]) .content-wrapper .content`,
-        keyframes: [
-            { opacity: 0, duration: 300 },
-            { opacity: 0, duration: 300 }
-        ],
-        duration: 500,
-        easing: 'linear'
-    })
+    document.querySelector('.menu-button')?.classList.add('initial')
 
-
-}
-
-const onBeforeEnter = (el) => {
-    console.log('onBeforeEnter')
-}
-
-const onEnter = (el, done) => {
-    console.log('onEnter')
-}
-
-const onAfterEnter = (el) => {
-    console.log('onAfterEnter')
-}
-
-const onEnterCancelled = (el) => {
-    console.log('onEnterCancelled')
-}
-
-const onBeforeLeave = (el) => {
-    console.log('onBeforeLeave')
-}
-
-const onLeave = (el, done) => {
-    console.log('onLeave')
-}
-
-const onAfterLeave = (el) => {
-    console.log('onAfterLeave')
-}
-
-const onLeaveCancelled = (el) => {
-    console.log('onLeaveCancelled')
-}
-
-
-
-
-
+    isInitial.value = true
+    console.log('clicked')
+  })
+})
 </script>
 <template>
   <div>
-    <TransitionGroup
-      @before-enter="onBeforeEnter"
-      @enter="onEnter"
-      @after-enter="onAfterEnter"
-      @enter-cancelled="onEnterCancelled"
-      @before-leave="onBeforeLeave"
-      @leave="onLeave"
-      @after-leave="onAfterLeave"
-      @leave-cancelled="onLeaveCancelled"
-      tag="div"
-      id="main-container"
-      name="curtain"
-      :key="click"
-    >
+    <div v-if="isMobile" ref="homeBtn" class="menu-button initial" key="menu_button">
+      <img src="/assets/icons/home.svg" alt="" />
+    </div>
+    <div id="main-container">
       <section class="panel initial" data-name="about_us" key="about_us">
         <div class="panel-title" data-tab="about_us" @click="activateTab">
           <img
@@ -289,7 +340,12 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="https://www.conceptliving.se/cat/CL%20-%20Natural%20Stone.pdf" target="_blank" download>See all NATURAL STONE</a>
+              <a
+                href="https://www.conceptliving.se/cat/CL%20-%20Natural%20Stone.pdf"
+                target="_blank"
+                download
+                >See all NATURAL STONE</a
+              >
             </div>
           </div>
           <div class="cover">
@@ -325,7 +381,12 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="https://www.conceptliving.se/cat/CL%20-%20Stenhuggardottern.pdf" target="_blank" download>See all STENHUGGARDOTTERN</a>
+              <a
+                href="https://www.conceptliving.se/cat/CL%20-%20Stenhuggardottern.pdf"
+                target="_blank"
+                download
+                >See all STENHUGGARDOTTERN</a
+              >
             </div>
           </div>
           <div class="cover">
@@ -362,7 +423,9 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="https://www.conceptliving.se/cat/CL%20-%20Wood.pdf" target="_blank" download>See all of NEW LINE</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Wood.pdf" target="_blank" download
+                >See all of NEW LINE</a
+              >
             </div>
           </div>
           <div class="cover">
@@ -398,7 +461,12 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="https://www.conceptliving.se/cat/CL%20-%20Sabi%20Garden.pdf" target="_blank" download>See all of SABI GARDEN</a>
+              <a
+                href="https://www.conceptliving.se/cat/CL%20-%20Sabi%20Garden.pdf"
+                target="_blank"
+                download
+                >See all of SABI GARDEN</a
+              >
             </div>
           </div>
           <div class="cover">
@@ -433,7 +501,9 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="https://www.conceptliving.se/cat/CL%20-%20Beds.pdf" target="_blank" download>See all of SUPREME BEDS</a>
+              <a href="https://www.conceptliving.se/cat/CL%20-%20Beds.pdf" target="_blank" download
+                >See all of SUPREME BEDS</a
+              >
             </div>
           </div>
           <div class="cover">
@@ -470,7 +540,12 @@ const onLeaveCancelled = (el) => {
               </p>
             </section>
             <div class="links">
-              <a href="https://www.conceptliving.se/cat/CL%20-%20Det%20Vilda%20Skafferiet.pdf" target="_blank" download>See all of DET VILDA SKAFFERIET</a>
+              <a
+                href="https://www.conceptliving.se/cat/CL%20-%20Det%20Vilda%20Skafferiet.pdf"
+                target="_blank"
+                download
+                >See all of DET VILDA SKAFFERIET</a
+              >
             </div>
           </div>
           <div class="cover">
@@ -478,7 +553,7 @@ const onLeaveCancelled = (el) => {
           </div>
         </div>
       </section>
-    </TransitionGroup>
+    </div>
     <Transition name="slide-fade">
       <div v-if="showCookieBanner" id="cookie-banner">
         <div class="overlay"></div>
@@ -498,36 +573,4 @@ const onLeaveCancelled = (el) => {
     </Transition>
   </div>
 </template>
-<style scoped>
-/* .panel .panel-title {
-  align-items: center;
-  transform: translateX(calc(-50% + calc(100vw / 14))) rotate(-90deg);
-  height: calc(100vw / 7 + 3px);
-  opacity: 1;
-  background-color: #c1a59c;
-  overflow: hidden;
-  border: 0;
-}
-
-.panel .panel-title:hover img.cover {
-  filter: grayscale(0%) saturate(100%);
-  cursor: pointer;
-}
-
-.panel .panel-title h1 {
-  display: flex;
-  font-size: 3rem;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin-bottom: 4.5rem;
-  width: 65%;
-  height: 100%;
-}
-
-.panel:last-child .panel-title h1 {
-  margin-bottom: 0rem;
-} */
-
-
-
-</style>
+<style scoped></style>
