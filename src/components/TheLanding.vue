@@ -577,14 +577,7 @@ onMounted(() => {
                 Claims claim@conceptliving.se
               </p>
             </section>
-            <div class="links">
-              <a
-                href="https://www.conceptliving.se/cat/CL%20-%20Det%20Vilda%20Skafferiet.pdf"
-                target="_blank"
-                download
-                >See all of DET VILDA SKAFFERIET</a
-              >
-            </div>
+            <div class="links"></div>
           </div>
           <div class="cover">
             <img src="/assets/categories/kategoribild_cl.jpg" alt="" />
