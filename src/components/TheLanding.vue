@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import anime from 'animejs'
-import { useLocalStorage, useWindowSize, useBreakpoints } from '@vueuse/core'
+import { useLocalStorage, useBreakpoints } from '@vueuse/core'
 import { ref, computed, onMounted, watch } from 'vue'
+import type { Ref } from 'vue'
 
 const activeTab = ref('about_us')
 const isInitial = ref(true)
-const click = ref(0)
 const showCookieBanner = useLocalStorage('showCookieBanner', true)
-const homeBtn = ref(null)
+const homeBtn: Ref<Element | null> = ref(null)
 
-const { width, height } = useWindowSize()
 const breakpoints = useBreakpoints({
   mobile: 0, // optional
   tablet: 768,
@@ -109,9 +108,9 @@ const panelHeaderKeyframes = computed(() => {
 const activeBreakpoint = breakpoints.active()
 const isMobile = computed(() => activeBreakpoint.value === 'mobile')
 
-const activateTab = (event) => {
+const activateTab = (event: Event) => {
   activeTab.value =
-    event.target.getAttribute('data-tab') || event.target.parentElement.getAttribute('data-tab')
+    event.target?.getAttribute('data-tab') || event.target?.parentElement.getAttribute('data-tab')
   collapsePanels()
 }
 
@@ -234,7 +233,7 @@ watch(activeBreakpoint, () => {
   collapsePanels()
 
   if (isMobile.value) {
-    document.querySelector('.menu-button')?.classList.remove('initial')
+    window.location.reload()
   }
 })
 
