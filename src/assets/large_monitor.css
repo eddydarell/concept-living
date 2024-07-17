@@ -301,13 +301,13 @@ img.home-logo {
   align-items: center;
   transform: translateX(calc(-50% + 2rem)) rotate(-90deg);
   white-space: nowrap;
-  background-color: #665252;
+  background-color: RGB(102, 71, 70);
   height: 4rem;
   width: 100vh;
   color: #fff;
   opacity: 0;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-  /* border: 1px solid #665252; */
+  /* border: 1px solid RGB(102, 71, 70); */
   transition:
     opacity ease 0.4s,
     background-color ease 0.4s;
@@ -346,7 +346,7 @@ img.home-logo {
   transform: translateX(calc(-50% + calc(100vw / 16))) rotate(-90deg);
   height: calc(100vw / 7);
   opacity: 1;
-  background-color: #665252;
+  background-color: RGB(102, 71, 70);
 }
 
 .initial .panel-title:hover img.cover {
@@ -366,8 +366,8 @@ img.home-logo {
 
 .collapsed .panel-title {
   opacity: 1;
-  background-color: #665252;
-  border: 1px solid #665252;
+  background-color: RGB(102, 71, 70);
+  border: 1px solid RGB(102, 71, 70);
 }
 
 .panel-title .dampener {
@@ -405,6 +405,7 @@ img.home-logo {
 }
 
 .content-wrapper .cover {
+  position: relative;
   flex: 2;
   display: flex;
   justify-content: center;
@@ -412,6 +413,21 @@ img.home-logo {
   overflow: hidden;
   transition: ease max-width 0.2s;
 }
+
+.content-wrapper .cover .cover-logo {
+  position: absolute;
+  bottom: 4rem;
+  right: 4rem;
+  height: calc(100vw / 8 - 8rem);
+  width: auto;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.content-wrapper .cover .cover-logo.up{
+  top: 4rem;
+  right: 4rem;
+} 
 
 .content-wrapper img {
   object-fit: cover;
@@ -445,7 +461,7 @@ img.home-logo {
 }
 
 .content-wrapper .links a:hover {
-  color: #665252;
+  color: RGB(102, 71, 70);
 }
 
 .shine-effect {

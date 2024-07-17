@@ -255,7 +255,7 @@ onMounted(() => {
 <template>
   <div>
     <div v-if="isMobile" ref="homeBtn" class="menu-button initial" key="menu_button">
-      <img src="/assets/icons/home.svg" alt="" />
+      <img src="/assets/icons/home.svg" alt="Home" />
     </div>
     <div id="main-container">
       <section class="panel initial" data-name="about_us" key="about_us">
@@ -266,7 +266,7 @@ onMounted(() => {
             src="/assets/logos/concept_living_logo_white.svg"
             alt=""
           />
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_cl.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/au.png' : '/assets/columns/kolumner_cl.jpg'" alt="Concept Living column image" />
           <h1 class="header">About us</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -308,13 +308,14 @@ onMounted(() => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_cl.jpg" alt="" />
+            <img src="/assets/categories/new/cau.png" alt="About us" />
+            <img class="cover-logo" src="/assets/logos/new/cl.svg" alt="Concept Living logo" />
           </div>
         </div>
       </section>
       <section class="panel initial" data-name="natural_stone" key="natural_stone">
         <div class="panel-title" data-tab="natural_stone" @click="activateTab">
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_s.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/ns.png' : '/assets/columns/kolumner_s.jpg'" alt="" />
           <h1 class="header">Natural stone</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -349,13 +350,14 @@ onMounted(() => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_s.jpg" alt="" />
+            <img src="/assets/categories/new/cns.png" alt="Natural Stone" />
+            <!-- <img class="cover-logo" src="/assets/logos/new/ns.svg" alt="Natural Stone logo" /> -->
           </div>
         </div>
       </section>
       <section class="panel initial" data-name="stenhuggardottern" key="stenhuggardottern">
         <div class="panel-title" data-tab="stenhuggardottern" @click="activateTab">
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_sd.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/s.png' : '/assets/columns/kolumner_sd.jpg'" alt="" />
           <h1 class="header">STENHUGGARDOTTERN</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -390,14 +392,15 @@ onMounted(() => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_sd.jpg" alt="" />
+            <img src="/assets/categories/new/cs.png" alt="STENHUGGARDOTTERN" />
+            <img class="cover-logo" src="/assets/logos/new/s.svg" alt="STENHUGGARDOTTERN logo" />
           </div>
         </div>
       </section>
 
       <section class="panel initial" data-name="new_line" key="new_line">
         <div class="panel-title" data-tab="new_line" @click="activateTab">
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_nl.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/nl.png' : '/assets/columns/kolumner_nl.jpg'" alt="" />
           <h1 class="header">New line</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -429,13 +432,15 @@ onMounted(() => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_nl.jpg" alt="" />
+            <img src="/assets/categories/new/cnl.png" alt="New Line" />
+            <img class="cover-logo" src="/assets/logos/new/nl.svg" alt="New Line logo" />
+            <img class="cover-logo up" src="/assets/logos/new/nl_DNA.png" alt="New Line DNA" />
           </div>
         </div>
       </section>
       <section class="panel initial" data-name="sabi_garden" key="sabi_garden">
         <div class="panel-title" data-tab="sabi_garden" @click="activateTab">
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_sg.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/sg.png' : '/assets/columns/kolumner_sg.jpg'" alt="" />
           <h1 class="header">Sabi garden</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -470,14 +475,15 @@ onMounted(() => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_sg.jpg" alt="" />
+            <img src="/assets/categories/new/csg.png" alt="Sabi Garden" />
+            <img class="cover-logo" src="/assets/logos/new/sg.svg" alt="logo" />
           </div>
         </div>
       </section>
 
       <section class="panel initial" data-name="supreme_beds" key="supreme_beds">
         <div class="panel-title" data-tab="supreme_beds" @click="activateTab">
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_sb.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/sb.png' :'/assets/columns/kolumner_sb.jpg'" alt="" />
           <h1 class="header">Supreme beds</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -507,14 +513,15 @@ onMounted(() => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_sb.jpg" alt="" />
+            <img src="/assets/categories/new/csb.png" alt="Supreme Beds" />
+            <img class="cover-logo" src="/assets/logos/new/sb.svg" alt="logo" />
           </div>
         </div>
       </section>
 
       <section class="panel initial" data-name="det_vilda_skafferiet" key="det_vilda_skafferiet">
         <div class="panel-title" data-tab="det_vilda_skafferiet" @click="activateTab">
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_dvs.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/dvs.png' :'/assets/columns/kolumner_dvs.jpg'" alt="" />
           <h1 class="header">Det vilda skafferiet</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -549,14 +556,15 @@ onMounted(() => {
             </div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_dvs.jpg" alt="" />
+            <img src="/assets/categories/new/cdvs.png" alt="Det Vilda Skafferiet" />
+            <img class="cover-logo" src="/assets/logos/new/dvs.svg" alt="logo" />
           </div>
         </div>
       </section>
 
       <section class="panel initial" data-name="contact" key="contact">
         <div class="panel-title" data-tab="contact" @click="activateTab">
-          <img v-if="isInitial" class="cover" src="/assets/columns/kolumner_cl.jpg" alt="" />
+          <img v-if="isInitial" class="cover" :src="isMobile ? '/assets/columns/mobile/c.png' : '/assets/columns/kolumner_cl.jpg'" alt="" />
           <h1 class="header">Contact</h1>
           <div class="dampener">&nbsp;</div>
         </div>
@@ -580,7 +588,7 @@ onMounted(() => {
             <div class="links"></div>
           </div>
           <div class="cover">
-            <img src="/assets/categories/kategoribild_cl.jpg" alt="" />
+            <img src="/assets/categories/new/cc.png" alt="Contact" />
           </div>
         </div>
       </section>
