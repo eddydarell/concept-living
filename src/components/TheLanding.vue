@@ -10,7 +10,9 @@ const isDomReady = ref(false)
 const isEverythingLoaded = ref(false)
 
 const showCookieBanner = useLocalStorage('showCookieBanner', true)
-const { vibrate, stop, isSupported } = useVibrate({ pattern: [100] })
+const showCookieMessage = ref(false)
+const cookieMessage = ref(null)
+const { vibrate, isSupported } = useVibrate({ pattern: [100] })
 
 const homeBtn: Ref<Element | null> = ref(null)
 
@@ -112,6 +114,10 @@ const panelHeaderKeyframes = computed(() => {
 
 const activeBreakpoint = breakpoints.active()
 const isMobile = computed(() => activeBreakpoint.value === 'mobile')
+
+const showCookieBannerTitle = computed(
+  () => !isMobile.value || (isMobile.value && !showCookieMessage.value)
+)
 
 const activateTab = (event: Event) => {
   activeTab.value =
@@ -245,6 +251,12 @@ const collapsePanels = () => {
   })
 }
 
+const toggleCookieMessage = (event: Event) => {
+  event.preventDefault()
+
+  showCookieMessage.value = !showCookieMessage.value
+}
+
 watch(activeBreakpoint, () => {
   console.log('active breakpoint:', activeBreakpoint.value)
 
@@ -303,7 +315,7 @@ onMounted(() => {
                 v-if="isInitial"
                 class="cover"
                 :src="
-                  isMobile ? '/assets/columns/mobile/au.png' : '/assets/columns/kolumner_cl.jpg'
+                  isMobile ? '/assets/columns/mobile/au.png' : '/assets/columns/col_au.png'
                 "
                 alt="Concept Living column image"
               />
@@ -342,14 +354,9 @@ onMounted(() => {
                     we sell live up to our keywords - form, function and quality.
                   </p>
                 </section>
-                <div class="links">
-                  <a href="">info@conceptliving.se</a>
-                  <a href="https://www.conceptliving.se">www.conceptliving.se</a>
-                </div>
               </div>
               <div class="cover">
                 <img src="/assets/categories/new/cau.png" alt="About us" />
-                <img class="cover-logo" src="/assets/logos/new/cl.svg" alt="Concept Living logo" />
               </div>
             </div>
           </section>
@@ -358,7 +365,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="isMobile ? '/assets/columns/mobile/ns.png' : '/assets/columns/kolumner_s.jpg'"
+                :src="isMobile ? '/assets/columns/mobile/ns.png' : '/assets/columns/col_ns.png'"
                 alt=""
               />
               <h1 class="header">Natural stone</h1>
@@ -405,7 +412,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="isMobile ? '/assets/columns/mobile/s.png' : '/assets/columns/kolumner_sd.jpg'"
+                :src="isMobile ? '/assets/columns/mobile/s.png' : '/assets/columns/col_s.png'"
                 alt=""
               />
               <h1 class="header">STENHUGGARDOTTERN</h1>
@@ -458,7 +465,7 @@ onMounted(() => {
                 v-if="isInitial"
                 class="cover"
                 :src="
-                  isMobile ? '/assets/columns/mobile/nl.png' : '/assets/columns/kolumner_nl.jpg'
+                  isMobile ? '/assets/columns/mobile/nl.png' : '/assets/columns/col_nl.png'
                 "
                 alt=""
               />
@@ -508,7 +515,7 @@ onMounted(() => {
                 v-if="isInitial"
                 class="cover"
                 :src="
-                  isMobile ? '/assets/columns/mobile/sg.png' : '/assets/columns/kolumner_sg.jpg'
+                  isMobile ? '/assets/columns/mobile/sg.png' : '/assets/columns/col_sg.png'
                 "
                 alt=""
               />
@@ -558,7 +565,7 @@ onMounted(() => {
                 v-if="isInitial"
                 class="cover"
                 :src="
-                  isMobile ? '/assets/columns/mobile/sb.png' : '/assets/columns/kolumner_sb.jpg'
+                  isMobile ? '/assets/columns/mobile/sb.png' : '/assets/columns/col_sb.png'
                 "
                 alt=""
               />
@@ -611,7 +618,7 @@ onMounted(() => {
                 v-if="isInitial"
                 class="cover"
                 :src="
-                  isMobile ? '/assets/columns/mobile/dvs.png' : '/assets/columns/kolumner_dvs.jpg'
+                  isMobile ? '/assets/columns/mobile/dvs.png' : '/assets/columns/col_cdvs.png'
                 "
                 alt=""
               />
@@ -661,7 +668,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="isMobile ? '/assets/columns/mobile/c.png' : '/assets/columns/kolumner_cl.jpg'"
+                :src="isMobile ? '/assets/columns/mobile/c.png' : '/assets/columns/col_c.png'"
                 alt=""
               />
               <h1 class="header">Contact</h1>
@@ -672,16 +679,23 @@ onMounted(() => {
                 <div class="logo">
                   <img src="/assets/logos/concept_living_logo.svg" alt="" />
                 </div>
-                <section>
+                <section style="margin-bottom: 2rem;">
                   <h2 class="header large">Contact</h2>
-                  <p>Concept Living Nordic AB Plantagegatan 6 41305 Göteborg</p>
+                  <p>
+                  <strong>General</strong> <a class="standalone-links"  href="mailto:info@conceptliving.se" target="_blank" >info@conceptliving.se</a> <br />
+                    <strong>Finance</strong> <a class="standalone-links"  href="mailto:finance@conceptliving.se" target="_blank" >finance@conceptliving.se </a> <br>
+                    <strong>Claims</strong> <a  class="standalone-links" href="mailto:claim@conceptliving.se" target="_blank" >claim@conceptliving.se</a>
+                  </p>
+                  
                 </section>
                 <section>
+                  <h2 class="header large">Office / Showroom</h2>
                   <p>
-                    General info@conceptliving.se <br />
-                    +46737231335 <br />
-                    Finance finance@conceptliving.se <br />
-                    Claims claim@conceptliving.se
+                    Concept Living  <br>
+                    <a class="standalone-links" href="https://maps.app.goo.gl/f2G45umpTbX73TuK9" target="_blank">
+                      Plantagegatan 6 <br>
+                      41305 Göteborg
+                    </a>
                   </p>
                 </section>
                 <div class="links"></div>
@@ -699,11 +713,23 @@ onMounted(() => {
               <img src="/assets/categories/cookies.jpg" class="cover" alt="" />
               <img src="/assets/logos/concept_living_logo_white.svg" class="logo" alt="" />
               <div class="text">
-                <h1 class="title">Welcome to concept living</h1>
-                <p>We use cookies and similar technologies to offer the best user experience.</p>
+                <Transition name="slide-fade-title" appear mode="in-out">
+                  <h1 v-show="showCookieBannerTitle" class="title">Welcome to concept living</h1>
+                </Transition>
+                <Transition name="slide-fade" mode="out-in">
+                  <p v-if="!showCookieMessage">
+                    We use cookies and similar technologies to offer the best user experience.
+                  </p>
+                  <p v-else>
+                    We use essential cookies to ensure our website functions properly and Google
+                    Analytics to understand how you use our site.
+                    No personal data is stored. <br>
+                    By continuing to use this site, you agree to our use of cookies.
+                  </p>
+                </Transition>
                 <div class="buttons">
                   <button @click="showCookieBanner = false">accept</button>
-                  <button>read more</button>
+                  <button @click="toggleCookieMessage($event)">read more</button>
                 </div>
               </div>
             </div>
@@ -714,6 +740,17 @@ onMounted(() => {
   </div>
 </template>
 <style scoped>
+strong {
+  font-weight: bold;
+}
+
+.standalone-links {
+  text-decoration: underline;
+  color: #333;
+  width: fit-content;
+  transition: color ease 0.3s;
+}
+
 .slide-show-enter-active,
 .slide-show-leave-active {
   transition:
@@ -735,4 +772,36 @@ onMounted(() => {
 .slide-show-leave-to img {
   transform: scale(1.5);
 }
+
+.slide-fade-title-enter-active {
+  transition: all 0.3s .5s;
+}
+
+.slide-fade-title-leave-active {
+  transition: all 0.3s;
+}
+
+.slide-fade-title-enter,
+.slide-fade-title-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.slide-fade-title-enter-to,
+.slide-fade-title-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-fade-title-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.slide-fade-title-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 </style>

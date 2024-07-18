@@ -463,8 +463,8 @@ img.home-logo {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  height: calc(100vw / 4 - 2rem);
-  width: auto;
+  width: calc(100vw / 4 - 2rem);
+  height: auto;
   object-fit: cover;
   z-index: 1;
 }
