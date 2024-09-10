@@ -257,6 +257,8 @@ const toggleCookieMessage = (event: Event) => {
   showCookieMessage.value = !showCookieMessage.value
 }
 
+console.log('active breakpoint:', activeBreakpoint.value)
+
 watch(activeBreakpoint, () => {
   console.log('active breakpoint:', activeBreakpoint.value)
 
@@ -314,9 +316,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="
-                  isMobile ? '/assets/columns/mobile/au.png' : '/assets/columns/col_au.png'
-                "
+                :src="isMobile ? '/assets/columns/mobile/au.png' : '/assets/columns/col_au.png'"
                 alt="Concept Living column image"
               />
               <h1 class="header">About us</h1>
@@ -464,9 +464,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="
-                  isMobile ? '/assets/columns/mobile/nl.png' : '/assets/columns/col_nl.png'
-                "
+                :src="isMobile ? '/assets/columns/mobile/nl.png' : '/assets/columns/col_nl.png'"
                 alt=""
               />
               <h1 class="header">New line</h1>
@@ -514,9 +512,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="
-                  isMobile ? '/assets/columns/mobile/sg.png' : '/assets/columns/col_sg.png'
-                "
+                :src="isMobile ? '/assets/columns/mobile/sg.png' : '/assets/columns/col_sg.png'"
                 alt=""
               />
               <h1 class="header">Sabi garden</h1>
@@ -564,9 +560,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="
-                  isMobile ? '/assets/columns/mobile/sb.png' : '/assets/columns/col_sb.png'
-                "
+                :src="isMobile ? '/assets/columns/mobile/sb.png' : '/assets/columns/col_sb.png'"
                 alt=""
               />
               <h1 class="header">Supreme beds</h1>
@@ -617,9 +611,7 @@ onMounted(() => {
               <img
                 v-if="isInitial"
                 class="cover"
-                :src="
-                  isMobile ? '/assets/columns/mobile/dvs.png' : '/assets/columns/col_cdvs.png'
-                "
+                :src="isMobile ? '/assets/columns/mobile/dvs.png' : '/assets/columns/col_dvs.png'"
                 alt=""
               />
               <h1 class="header">Det vilda skafferiet</h1>
@@ -679,21 +671,38 @@ onMounted(() => {
                 <div class="logo">
                   <img src="/assets/logos/concept_living_logo.svg" alt="" />
                 </div>
-                <section style="margin-bottom: 2rem;">
+                <section style="margin-bottom: 2rem">
                   <h2 class="header large">Contact</h2>
                   <p>
-                  <strong>General</strong> <a class="standalone-links"  href="mailto:info@conceptliving.se" target="_blank" >info@conceptliving.se</a> <br />
-                    <strong>Finance</strong> <a class="standalone-links"  href="mailto:finance@conceptliving.se" target="_blank" >finance@conceptliving.se </a> <br>
-                    <strong>Claims</strong> <a  class="standalone-links" href="mailto:claim@conceptliving.se" target="_blank" >claim@conceptliving.se</a>
+                    <strong>General</strong>&nbsp;
+                    <a class="standalone-links" href="mailto:info@conceptliving.se" target="_blank"
+                      >info@conceptliving.se</a
+                    >
+                    <br />
+                    <strong>Finance</strong>&nbsp;
+                    <a
+                      class="standalone-links"
+                      href="mailto:finance@conceptliving.se"
+                      target="_blank"
+                      >finance@conceptliving.se
+                    </a>
+                    <br />
+                    <strong>Claims</strong>&nbsp;
+                    <a class="standalone-links" href="mailto:claim@conceptliving.se" target="_blank"
+                      >claim@conceptliving.se</a
+                    >
                   </p>
-                  
                 </section>
                 <section>
                   <h2 class="header large">Office / Showroom</h2>
                   <p>
-                    Concept Living  <br>
-                    <a class="standalone-links" href="https://maps.app.goo.gl/f2G45umpTbX73TuK9" target="_blank">
-                      Plantagegatan 6 <br>
+                    Concept Living <br />
+                    <a
+                      class="standalone-links"
+                      href="https://maps.app.goo.gl/f2G45umpTbX73TuK9"
+                      target="_blank"
+                    >
+                      Plantagegatan 6 <br />
                       41305 Göteborg
                     </a>
                   </p>
@@ -722,8 +731,7 @@ onMounted(() => {
                   </p>
                   <p v-else>
                     We use essential cookies to ensure our website functions properly and Google
-                    Analytics to understand how you use our site.
-                    No personal data is stored. <br>
+                    Analytics to understand how you use our site. No personal data is stored. <br />
                     By continuing to use this site, you agree to our use of cookies.
                   </p>
                 </Transition>
@@ -774,7 +782,7 @@ strong {
 }
 
 .slide-fade-title-enter-active {
-  transition: all 0.3s .5s;
+  transition: all 0.3s 0.5s;
 }
 
 .slide-fade-title-leave-active {
@@ -802,6 +810,4 @@ strong {
   opacity: 1;
   transform: translateY(0);
 }
-
-
 </style>

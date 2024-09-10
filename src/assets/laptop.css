@@ -88,13 +88,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.splash-screen{
+.splash-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: RGB(102, 71, 70);
+  background-color: RGB(112, 69, 71);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,7 +105,6 @@ body {
   height: auto;
   width: clamp(50px, 25%, 200px);
 }
-
 
 #app {
   width: 100%;
@@ -320,17 +319,18 @@ img.home-logo {
 
 .panel-title {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   transform: translateX(calc(-50% + 1rem)) rotate(-90deg);
   white-space: nowrap;
-  background-color: RGB(102, 71, 70);
+  background-color: RGB(112, 69, 71);
   height: 2rem;
   width: 100vh;
   color: #fff;
   opacity: 0;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-  /* border: 1px solid RGB(102, 71, 70); */
+  /* border: 1px solid RGB(112, 69, 71); */
   transition:
     opacity ease 0.4s,
     background-color ease 0.4s;
@@ -355,10 +355,11 @@ img.home-logo {
 
 .panel-title img.cover {
   position: absolute;
-  transform: translateX(calc(37.5vh)) rotate(90deg);
-  height: 110vh;
-  width: auto;
+  top: 50%;
+  left: 50%;
   object-fit: cover;
+  height: 100vh;
+  transform: translate(-50%, -50%) rotate(90deg);
   z-index: -1;
   transition: ease filter 0.4s;
   filter: grayscale(50%);
@@ -369,7 +370,7 @@ img.home-logo {
   transform: translateX(calc(-50% + calc(100vw / 16))) rotate(-90deg);
   height: calc(100vw / 7);
   opacity: 1;
-  background-color: RGB(102, 71, 70);
+  background-color: RGB(112, 69, 71);
 }
 
 .initial .panel-title:hover img.cover {
@@ -389,8 +390,8 @@ img.home-logo {
 
 .collapsed .panel-title {
   opacity: 1;
-  background-color: RGB(102, 71, 70);
-  border: 1px solid RGB(102, 71, 70);
+  background-color: RGB(112, 69, 71);
+  border: 1px solid RGB(112, 69, 71);
 }
 
 .panel-title .dampener {
@@ -446,10 +447,10 @@ img.home-logo {
   z-index: 1;
 }
 
-.content-wrapper .cover .cover-logo.up{
+.content-wrapper .cover .cover-logo.up {
   top: 2rem;
   right: 2rem;
-} 
+}
 
 .content-wrapper img {
   object-fit: cover;
@@ -483,7 +484,7 @@ img.home-logo {
 }
 
 .content-wrapper .links a:hover {
-  color: RGB(102, 71, 70);
+  color: RGB(112, 69, 71);
 }
 
 .shine-effect {
